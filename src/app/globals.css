@@ -1,26 +1,244 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────
+   ARK CATERERS — Design System
+   ────────────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette — no gradients */
+  --obsidian: #151311;
+  --warm-ivory: #F5EFE5;
+  --deep-maroon: #671F2A;
+  --burnt-saffron: #B8662C;
+  --antique-brass: #B5965A;
+  --muted-sage: #5E6B5D;
+
+  /* Semantic tokens */
+  --background: var(--warm-ivory);
+  --foreground: var(--obsidian);
+  --accent: var(--deep-maroon);
+  --accent-warm: var(--burnt-saffron);
+  --accent-gold: var(--antique-brass);
+  --accent-sage: var(--muted-sage);
+
+  /* Surface variants */
+  --surface-dark: var(--obsidian);
+  --surface-maroon: var(--deep-maroon);
+  --surface-warm: #EDE6D8;
+  --surface-cream: #FAF7F2;
+
+  /* Typography */
+  --text-primary: var(--obsidian);
+  --text-secondary: #4A4640;
+  --text-muted: #7A756D;
+  --text-on-dark: var(--warm-ivory);
+  --text-on-maroon: #F5EFE5;
+
+  /* Borders */
+  --border-light: #DDD6C9;
+  --border-dark: #2A2724;
+
+  /* Spacing scale */
+  --section-gap: clamp(4rem, 8vw, 8rem);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-obsidian: var(--obsidian);
+  --color-warm-ivory: var(--warm-ivory);
+  --color-deep-maroon: var(--deep-maroon);
+  --color-burnt-saffron: var(--burnt-saffron);
+  --color-antique-brass: var(--antique-brass);
+  --color-muted-sage: var(--muted-sage);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-maroon: var(--surface-maroon);
+  --color-surface-warm: var(--surface-warm);
+  --color-surface-cream: var(--surface-cream);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-maroon: var(--text-on-maroon);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-jakarta);
+  --font-script: var(--font-script);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.font-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* ── Base styles ─────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--warm-ivory);
+  color: var(--obsidian);
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Typography utilities ────────────────────── */
+
+.font-display {
+  font-family: var(--font-cormorant), "Georgia", serif;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Eyebrow / micro-label */
+.eyebrow {
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Editorial headline */
+.headline-editorial {
+  font-family: var(--font-cormorant), "Georgia", serif;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+/* ── Layout utilities ────────────────────────── */
+
+.container-site {
+  width: 100%;
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section-padding {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* ── Thin editorial divider ──────────────────── */
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-light);
+  border: none;
+}
+
+.divider-dark {
+  background-color: var(--border-dark);
+}
+
+/* ── Image placeholder styling ───────────────── */
+
+.image-placeholder {
+  background-color: #D6CFBF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Custom scrollbar (webkit) ───────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warm-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── Selection color ─────────────────────────── */
+
+::selection {
+  background-color: var(--deep-maroon);
+  color: var(--warm-ivory);
+}
+
+/* ── Focus visible ───────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--deep-maroon);
+  outline-offset: 2px;
+}
+
+/* ── Horizontal scroll containers ────────────── */
+
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scroll-snap-x::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* ── Hide scrollbar utility ──────────────────── */
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
